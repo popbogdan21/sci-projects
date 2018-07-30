@@ -1,35 +1,37 @@
+/*
+    @Class Calculator contains the methods for arithmetic calculations
+
+    @calculator() uses the required switch statement used to identify
+    the operation and calls the arithmetic methods
+
+    @Arithmetic methods add -- ads two numbers, subtract -- deducts two numbers,
+    multiply -- multiplies two numbers, divide -- divides two number
+
+    @all arithmetic methods return double type values and use two double type
+
+ */
 package calculator;
 
-import java.util.Scanner;
 import java.lang.*;
+
 
 public  class Calculator {
 
-    public  double calculator() {
-        double firstNumber;
-        double lastNumber;
-        String operation = new String("");
+    public  double calculator(double n1, double n2, String op) {
 
-        firstNumber = inputVariables("first");
-        lastNumber = inputVariables("second");
-
-        Scanner scan1 = new Scanner(System.in);
-        System.out.println("Please input the operation you want to perform (please use + , -, *, / ): ");
-        operation = scan1.nextLine();
-        //System.out.println("The result of the requested operation is: "+calculator(operation));
-        switch (operation) {
+        switch (op) {
             case "+": {
-                return (firstNumber + lastNumber);
+                return add(n1,n2);
             }
             case "-": {
-                return (firstNumber - lastNumber);
+                return subtract(n1,n2);
             }
             case "*": {
-                return (firstNumber * lastNumber);
+                return multiply(n1,n2);
             }
             case "/": {
-                if (lastNumber != 0) {
-                    return (firstNumber / lastNumber);
+                if (n2 != 0) {
+                    return divide(n1,n2);
                 } else {
                     System.out.println("Division by zero is not allowed\nProgram will exit now");
                     System.exit(0);
@@ -43,30 +45,19 @@ public  class Calculator {
         }
         return 0;
     }
-
-    public double inputVariables(String a) {
-        String tempNumber = new String("");
-        System.out.println("Please insert the "+a+" number:");
-        Scanner scan = new Scanner(System.in);
-        tempNumber = scan.nextLine();
-        if (iSDouble(tempNumber)) {
-            return Double.parseDouble(tempNumber);
-        } else {
-            System.out.println("Your input is a non-numeric variable.\nProgram will exit now");
-            System.exit(0);
-        }
-        return 0;
+    private static double add(double n1, double n2){
+        return (n1+n2);
+    }
+    private static double subtract(double n1, double n2){
+        return (n1-n2);
+    }
+    private static  double multiply(double n1, double n2){
+        return (n1*n2);
+    }
+    private static double divide(double n1, double n2){
+        return (n1/n2);
     }
 
-    public boolean iSDouble(String tempNumber) {
-            try {
-                Double.parseDouble(tempNumber);
-                return true;
-            }
-            catch (NumberFormatException nfe){
-                return false;
-            }
-    }
+}
 
-    }
 
